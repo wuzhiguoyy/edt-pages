@@ -68,6 +68,22 @@ Cloudflare Worker 版 [edgetunnel](https://github.com/cmliu/edgetunnel) 的**后
 
 ---
 
+## 界面预览
+
+后台首页：
+
+![后台首页](image/proimage/1.png)
+
+「获取更多 PROXYIP」弹窗，按国家搜索、一键填入：
+
+![获取更多 PROXYIP](image/proimage/2.png)
+
+详细配置与节点信息：
+
+![节点配置](image/proimage/3.png)
+
+---
+
 ## 目录结构
 
 ```
