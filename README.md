@@ -6,6 +6,10 @@ Cloudflare Worker 版 [edgetunnel](https://github.com/cmliu/edgetunnel) 的**后
 
 > 本仓库是 [EDT-Pages/EDT-Pages.github.io](https://github.com/EDT-Pages/EDT-Pages.github.io) 的部署副本，并按需做了少量修改（见「本仓库的改动」）。
 
+**English**: A static admin panel template for [edgetunnel](https://github.com/cmliu/edgetunnel) on Cloudflare Workers. One-click PROXYIP selection, VLESS + WebSocket + TLS node generation, subscription links, and a full Chinese deployment guide.
+
+**关键词 / Keywords**: edgetunnel, Cloudflare Workers, Cloudflare Pages, PROXYIP, ProxyIP, VLESS, VMess, Trojan, WebSocket, TLS, Clash, Clash Verge, mihomo, v2rayN, v2rayNG, Shadowrocket, Streisand, subscription, 订阅链接, 节点订阅, 代理设置页面, 科学上网, 翻墙, 机场面板, 优选IP, edge tunnel admin panel, cloudflare proxy, vless ws tls.
+
 ---
 
 ## 业务说明与合规提示
