@@ -4,6 +4,8 @@ Cloudflare Worker 版 [edgetunnel](https://github.com/cmliu/edgetunnel) 的**后
 
 **语言 / Languages**: [简体中文](README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Français](README.fr.md)
 
+> 常用链接（Cloudflare、域名、IP 查询）见 [LINKS.md](LINKS.md)。
+
 > ⚠️ **仅面向境外用户与境外业务场景。** 中国大陆境内使用须遵守《网络安全法》等法律法规，未经批准不得擅自建立或使用非法定信道进行国际联网。详见下方[「业务说明与合规提示」](#业务说明与合规提示)。
 
 > 本仓库是 [EDT-Pages/EDT-Pages.github.io](https://github.com/EDT-Pages/EDT-Pages.github.io) 的部署副本，并按需做了少量修改（见「本仓库的改动」）。
