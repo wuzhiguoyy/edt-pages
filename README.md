@@ -84,10 +84,10 @@ Cloudflare Worker 版 [edgetunnel](https://github.com/cmliu/edgetunnel) 的**后
 ├── locations               # 地区列表
 ├── sub                     # 订阅占位
 ├── cdn-cgi/trace           # trace 占位
-├── zip/edgetunnel-main.zip # Worker 主程序源码包（部署用，见下文）
-├── v2rnyn/v2rayN-windows-64.zip # Windows 客户端（v2rayN）
 └── image/联系二维码.jpg    # 联系作者二维码
 ```
+
+> 大文件（Worker 源码包、v2rayN 客户端）不放在仓库里，统一放在 [Releases](../../releases/latest) 下载。
 
 > `admin/` 下的 `config.json`、`log.json` 等只是**占位文件**。真正运行时，Worker 会用自己存储的配置覆盖这些接口，页面通过 `/admin/xxx` 读取。
 
@@ -167,9 +167,9 @@ https://<你的 Worker 域名>/admin
 
 ---
 
-## Worker 源码包（zip/edgetunnel-main.zip）
+## Worker 源码包（Releases 下载）
 
-仓库里的 `zip/edgetunnel-main.zip` 是配套的 **Worker 主程序源码包**，解压后包含：
+Worker 主程序源码包在 [Releases](../../releases/latest) 里，文件名 `edgetunnel-main.zip`，解压后包含：
 
 ```
 edgetunnel-main/
@@ -180,7 +180,7 @@ edgetunnel-main/
 
 ### 使用方式
 
-1. 下载 `zip/edgetunnel-main.zip` 并解压；
+1. 下载 Releases 里的 `edgetunnel-main.zip` 并解压；
 2. 打开 `_worker.js`，把第 4 行改成你自己的 Pages 地址：
 
 ```js
@@ -259,9 +259,9 @@ npx wrangler deploy
 
 后台部署好、Worker 配置好后，最后一步是把节点导入客户端。
 
-### Windows：v2rayN（本仓库自带）
+### Windows：v2rayN（Releases 下载）
 
-客户端包：`v2rnyn/v2rayN-windows-64.zip`
+客户端包：在 [Releases](../../releases/latest) 下载 `v2rayN-windows-64.zip`
 
 1. 下载并解压 `v2rayN-windows-64.zip`；
 2. 双击 `v2rayN.exe` 运行（首次会提示安装 NET 运行时，按提示装）；
