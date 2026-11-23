@@ -12806,6 +12806,11 @@
 							style="display: none; padding: 10px 16px;" title="配置路径模板">
 							⚙️ 路径模板配置
 						</button>
+						<button type="button" class="btn btn-search-proxy" id="exploreProxyIPBtn"
+							onclick="showExploreProxyIPModal()" style="padding: 10px 16px;"
+							title="从常用列表中选择 PROXYIP">
+							📋 获取更多 PROXYIP
+						</button>
 						<button type="button" class="btn btn-search-proxy" id="exploreSocks5Btn" hidden
 							onclick="showExploreSocks5Modal()" style="display: none; padding: 10px 16px;"
 							title="从SOCKS5列表中选择可用的代理">
@@ -18972,6 +18977,103 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- 获取更多 PROXYIP 弹窗 -->
+	<div class="modal-overlay" id="exploreProxyIPModal" onclick="closeExploreProxyIPModal(event)">
+		<div class="modal" onclick="event.stopPropagation()" style="max-width: 520px;">
+			<button type="button" class="modal-close" onclick="closeExploreProxyIPModal()">×</button>
+			<h2 class="path-template-modal-title">📋 获取更多 PROXYIP</h2>
+			<p style="font-size: 12px; color: #6b7280; margin: 0 0 12px;">
+				点击任意地址即可填入 PROXYIP
+			</p>
+			<input type="text" id="exploreProxyIPSearch" placeholder="搜索国家或域名"
+				oninput="renderExploreProxyIPList()"
+				style="width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px; margin-bottom: 10px; box-sizing: border-box;">
+			<div id="exploreProxyIPList"
+				style="max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;">
+			</div>
+		</div>
+	</div>
+	<script>
+		var PROXYIP_SPECIALS = [
+			['全球', 'ProxyIP.CMLiussss.net'],
+			['Cm.Soso', 'Cm.Soso.Edu.Kg'],
+			['Sub', 'Sub.Cmliussss.Net'],
+			['Owo', 'Owo.O00o.Ooo']
+		];
+		var PROXYIP_COUNTRIES = [
+			['HK', '香港'], ['TW', '台湾'], ['SG', '新加坡'], ['JP', '日本'], ['KR', '韩国'],
+			['US', '美国'], ['CA', '加拿大'], ['GB', '英国'], ['DE', '德国'], ['FR', '法国'],
+			['NL', '荷兰'], ['SE', '瑞典'], ['FI', '芬兰'], ['PL', '波兰'], ['IT', '意大利'],
+			['ES', '西班牙'], ['PT', '葡萄牙'], ['CH', '瑞士'], ['AT', '奥地利'], ['BE', '比利时'],
+			['IE', '爱尔兰'], ['NO', '挪威'], ['DK', '丹麦'], ['CZ', '捷克'], ['HU', '匈牙利'],
+			['RO', '罗马尼亚'], ['BG', '保加利亚'], ['GR', '希腊'], ['TR', '土耳其'], ['RU', '俄罗斯'],
+			['UA', '乌克兰'], ['IL', '以色列'], ['AE', '阿联酋'], ['SA', '沙特'], ['IN', '印度'],
+			['ID', '印尼'], ['MY', '马来西亚'], ['TH', '泰国'], ['VN', '越南'], ['PH', '菲律宾'],
+			['AU', '澳大利亚'], ['NZ', '新西兰'], ['BR', '巴西'], ['AR', '阿根廷'], ['MX', '墨西哥'],
+			['ZA', '南非'], ['EG', '埃及'], ['NG', '尼日利亚'], ['CL', '智利'], ['CO', '哥伦比亚']
+		];
+
+		function proxyipItems() {
+			var items = PROXYIP_SPECIALS.map(function (item) {
+				return { name: item[0], domain: item[1] };
+			});
+			PROXYIP_COUNTRIES.forEach(function (item) {
+				items.push({ name: item[1], domain: 'ProxyIP.' + item[0] + '.CMLiussss.net' });
+			});
+			return items;
+		}
+
+		function renderExploreProxyIPList() {
+			var list = document.getElementById('exploreProxyIPList');
+			var input = document.getElementById('exploreProxyIPSearch');
+			var keyword = (input && input.value ? input.value : '').toLowerCase();
+			list.innerHTML = '';
+
+			proxyipItems().forEach(function (item) {
+				if (keyword && item.name.toLowerCase().indexOf(keyword) === -1
+					&& item.domain.toLowerCase().indexOf(keyword) === -1) {
+					return;
+				}
+				var button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'proxyip-picker-item';
+				button.style.cssText = 'display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;';
+				button.innerHTML = '<span class="proxyip-picker-name">' + item.name
+					+ '</span><span class="proxyip-picker-domain">' + item.domain + '</span>';
+				button.onclick = function () { pickExploreProxyIP(item.domain); };
+				list.appendChild(button);
+			});
+		}
+
+		function showExploreProxyIPModal() {
+			document.getElementById('exploreProxyIPModal').classList.add('show');
+			document.getElementById('exploreProxyIPSearch').value = '';
+			renderExploreProxyIPList();
+		}
+
+		function closeExploreProxyIPModal(event) {
+			if (event && event.target !== event.currentTarget) {
+				return;
+			}
+			document.getElementById('exploreProxyIPModal').classList.remove('show');
+		}
+
+		function pickExploreProxyIP(domain) {
+			var input = document.getElementById('proxyIP');
+			if (input) {
+				input.value = domain;
+				input.dispatchEvent(new Event('input', { bubbles: true }));
+			}
+			if (typeof processProxyIP === 'function') {
+				try { processProxyIP(); } catch (error) { }
+			}
+			if (typeof markModified === 'function') {
+				try { markModified('proxy'); } catch (error) { }
+			}
+			closeExploreProxyIPModal();
+		}
+	</script>
 
 	<!-- 路径模板配置弹窗 -->
 	<div class="modal-overlay" id="pathTemplateConfigModal" onclick="closePathTemplateConfigModal(event)">
